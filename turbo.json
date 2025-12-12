@@ -1,0 +1,55 @@
+{
+  "$schema": "https://turbo.build/schema. json",
+  "version": "2",
+  "globalDependencies": ["**/. env", "**/.env.local"],
+  "globalEnv": ["NODE_ENV"],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**", ". next/**", "build/**"],
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["src/**/*. ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"]
+    },
+    "dev":  {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": [".eslintcache"],
+      "cache": true,
+      "inputs": ["src/**/*.ts", "src/**/*.tsx"]
+    },
+    "lint:fix": {
+      "cache": false
+    },
+    "type-check": {
+      "cache": true,
+      "inputs":  ["src/**/*.ts", "src/**/*.tsx", "**/*.tsconfig.json"]
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "cache": true,
+      "inputs": ["src/**", "test/**", "jest.config.*", "vitest.config.*"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:coverage": {
+      "outputs": ["coverage/**"],
+      "cache": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
+    "docs": {
+      "outputs": ["docs/**"],
+      "cache":  true
+    },
+    "storybook": {
+      "cache": false,
+      "persistent":  true
+    }
+  }
+}

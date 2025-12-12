@@ -1,0 +1,43 @@
+{
+  "name": "auto-inventory-ai-frontend",
+  "version": "1.0.0",
+  "description": "Auto Inventory AI Frontend - Monorepo with multiple workspace packages",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "install:all": "yarn install",
+    "dev": "yarn workspaces foreach -v run dev",
+    "build": "yarn workspaces foreach -v run build",
+    "test": "yarn workspaces foreach -v run test",
+    "lint": "yarn workspaces foreach -v run lint",
+    "format": "yarn workspaces foreach -v run format",
+    "clean": "yarn workspaces foreach -v run clean && rm -rf node_modules",
+    "type-check": "yarn workspaces foreach -v run type-check",
+    "precommit": "yarn lint && yarn type-check"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=3.0.0"
+  },
+  "keywords": [
+    "monorepo",
+    "inventory",
+    "ai",
+    "frontend"
+  ],
+  "author": "GeekySquid",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeekySquid/auto-inventory-ai-frontend.git"
+  }
+}

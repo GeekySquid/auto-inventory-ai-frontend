@@ -37,6 +37,9 @@ Production-grade AI-powered inventory and supply chain management system fronten
 - **Manufacturing:** BOM tracking, batch optimization
 - **Pharmacy:** Shelf-life, regulatory compliance
 
+## Folder Structure
+
+```
 src/
 ├── pages/
 │   ├── onboarding/
@@ -149,6 +152,7 @@ src/
     ├── api.ts                       # API request/response types
     ├── business.ts                  # Business domain types
     └── voice.ts                     # Voice interaction types
+```
 
 ## 🚀 Quick Start
 

@@ -37,65 +37,118 @@ Production-grade AI-powered inventory and supply chain management system fronten
 - **Manufacturing:** BOM tracking, batch optimization
 - **Pharmacy:** Shelf-life, regulatory compliance
 
-## 📁 Project Structure
-
-```
-auto-inventory-ai-frontend/
-├── apps/
-│   ├── web/                 # Main Next.js application
-│   │   ├── src/
-│   │   │   ├── app/        # App Router pages
-│   │   │   ├── components/ # React components (50+)
-│   │   │   ├── hooks/      # Custom React hooks
-│   │   │   ├── services/   # API & business logic
-│   │   │   ├── store/      # Zustand stores
-│   │   │   ├── types/      # TypeScript types
-│   │   │   └── utils/      # Helper functions
-│   │   ├── public/         # Static assets
-│   │   └── package.json
+src/
+├── pages/
+│   ├── onboarding/
+│   │   ├── Welcome.tsx              # First touch - brand promise
+│   │   ├── BusinessInfo.tsx         # Business type, size, products
+│   │   ├── PainPointDiscovery.tsx   # Multi-choice pain points
+│   │   ├── SupplyChainMap.tsx       # Map suppliers, warehouses, stores
+│   │   ├── DataImport.tsx           # Historical sales/PO upload
+│   │   └── SetupComplete.tsx        # Confirmation & next steps
 │   │
-│   └── storybook/          # Component documentation
-│       ├── stories/
-│       └── package.json
-│
-├── packages/
-│   ├── ui/                 # Shared UI components
-│   │   ├── src/components/
-│   │   └── package.json
+│   ├── dashboard/
+│   │   ├── DashboardHome.tsx        # Main hub (role-based)
+│   │   ├── InventoryOverview.tsx    # Real-time inventory status
+│   │   ├── DemandForecasting.tsx    # Visual demand trends
+│   │   ├── ReorderOptimizer.tsx     # Reorder suggestions & calculator
+│   │   ├── SupplierAnalysis.tsx     # Lead time insights
+│   │   ├── CashFlowInsights.tsx     # Working capital impact
+│   │   └── Reports.tsx              # Analytics & KPIs
 │   │
-│   ├── chatbot-sdk/        # Chatbot utilities
-│   │   ├── src/
-│   │   │   ├── types/
-│   │   │   ├── nlp/
-│   │   │   ├── api/
-│   │   │   └── utils/
-│   │   └── package.json
+│   ├── settings/
+│   │   ├── Profile.tsx              # User/business profile
+│   │   ├── Integrations.tsx         # API keys, webhooks
+│   │   ├── VoiceSetup.tsx           # ASR/LLM config & testing
+│   │   └── DataManagement.tsx       # Export, delete, privacy
 │   │
-│   ├── types/              # Shared TypeScript types
-│   │   └── package.json
+│   └── voice/
+│       ├── VoiceConsole.tsx         # Live voice interaction
+│       └── CommandLibrary.tsx       # Saved/suggested commands
+│
+├── components/
+│   ├── shared/
+│   │   ├── Navbar.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── Layout.tsx
+│   │   ├── Modal.tsx
+│   │   ├── Card.tsx
+│   │   ├── Badge.tsx
+│   │   └── LoadingSpinner.tsx
 │   │
-│   └── utils/              # Shared utilities
-│       └── package.json
+│   ├── discovery/
+│   │   ├── PainPointCard.tsx        # Clickable pain point with icon
+│   │   ├── PainPointSummary.tsx     # Overview of selected issues
+│   │   ├── SupplierForm.tsx         # Add/edit supplier
+│   │   ├── ProductCategoryPicker.tsx # Category selection
+│   │   └── DataImportWizard.tsx     # CSV upload with preview
+│   │
+│   ├── dashboard/
+│   │   ├── InventoryMetrics.tsx     # KPI cards (stockouts, turnover)
+│   │   ├── DemandChart.tsx          # Time-series chart
+│   │   ├── ReorderCard.tsx          # Reorder suggestion card
+│   │   ├── SafetyStockExplainer.tsx # Educational modal
+│   │   ├── LeadTimeDistribution.tsx # Supplier lead-time viz
+│   │   ├── WorkingCapitalMeter.tsx  # Cash flow impact gauge
+│   │   ├── StockoutRiskMatrix.tsx   # Risk heat map
+│   │   └── SKUPerformance.tsx       # Product-level deep dive
+│   │
+│   ├── voice/
+│   │   ├── VoiceRecorder.tsx        # Record & visualize audio
+│   │   ├── CommandParser.tsx        # Display parsed intent & slots
+│   │   ├── ActionConfirm.tsx        # Confirm action (e.g., create PO)
+│   │   └── CommandHistory.tsx       # Log of past voice actions
+│   │
+│   └── charts/
+│       ├── LineChart.tsx
+│       ├── BarChart.tsx
+│       ├── HeatMap.tsx
+│       └── GaugeChart.tsx
 │
-├── docs/                   # Architecture & guides
-│   ├── architecture/
-│   ├── chatbot/
-│   ├── features/
-│   ├── development/
-│   └── api/
+├── hooks/
+│   ├── useOnboarding.ts             # Manage onboarding state
+│   ├── useDashboard.ts              # Fetch & cache dashboard data
+│   ├── useForecast.ts               # Forecast API calls
+│   ├── useVoice.ts                  # Voice recording & streaming
+│   └── useLocalStorage.ts           # Persist user prefs
 │
-├── tests/                  # Test suites
-│   ├── unit/
-│   ├── integration/
-│   ├── e2e/
-│   └── fixtures/
+├── services/
+│   ├── api. ts                       # Axios/fetch config
+│   ├── auth.ts                      # Login/session
+│   ├── inventory.ts                 # SKU & stock endpoints
+│   ├── forecast.ts                  # Demand & lead-time predictions
+│   ├── voice.ts                     # ASR & LLM intent parsing
+│   ├── suppliers.ts                 # Supplier CRUD
+│   └── export.ts                    # Data download/reports
 │
-├── docker/                 # Container configs
-├── . github/workflows/      # CI/CD pipelines
-├── turbo.json              # Turbo configuration
-├── package.json            # Root package
-└── README.md               # This file
-```
+├── context/
+│   ├── AuthContext.tsx              # User & session state
+│   ├── BusinessContext.tsx          # Business profile & settings
+│   ├── PainPointContext.tsx         # Discovered pain points
+│   └── UIContext.tsx                # Theme, language, notifications
+│
+├── constants/
+│   ├── painPoints.ts                # Pain point taxonomy
+│   ├── sectors.ts                   # MSME sectors & templates
+│   ├── messages.ts                  # Copy & microcopy
+│   └── config.ts                    # Feature flags, API URLs
+│
+├── styles/
+│   ├── globals.css
+│   ├── tailwind.css
+│   └── animations.css
+│
+├── utils/
+│   ├── validators.ts                # Form validation
+│   ├── formatters.ts                # Number, date, currency formatting
+│   ├── analytics.ts                 # Track user actions
+│   └── errors.ts                    # Error handling & display
+│
+└── types/
+    ├── index. ts                     # Shared TypeScript types
+    ├── api.ts                       # API request/response types
+    ├── business.ts                  # Business domain types
+    └── voice.ts                     # Voice interaction types
 
 ## 🚀 Quick Start
 
